@@ -28,3 +28,9 @@ def extract_news(url):
     response = requests.get(url)
     content= response.content
     soup = BeautifulSoup(content, 'html.parser')
+    for i, tag in enumerate(
+        soup.find_all('td', attrs={'class':'title','valign':''})
+    ):
+        ctn +=((str(i+1)+' :: '+tag.text+"\n"+'<br>')if tag.text != 'More' else'')
+        #print(tag.prettify) find all('span),attrs={'class':''sitestr'}
+    return(ctn)
